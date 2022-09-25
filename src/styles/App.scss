@@ -1,0 +1,60 @@
+.App {
+   &__body{
+   display: flex;
+   }
+   &__wraper{
+      margin-left: 20px;
+   }
+}
+
+.NavBar {
+   display: flex;
+   justify-content: space-between;
+   align-items: center;
+   border: 1px solid black;
+   height: 80px;
+   width: 100vw;
+   &__logo {
+      margin-left: 30px;
+   }
+   &__links{
+      margin-right: 30px;
+      &-link {
+         margin: 10px;
+         text-decoration: none;
+      }
+   }
+}
+
+.Posts {
+   display: grid;
+   grid-template-columns: repeat(auto-fill, minmax(600px, 1fr));
+   &__item {
+      border: 1px solid cadetblue;
+      margin: 20px;
+      padding: 10px;
+      &-user {
+         display: flex;
+         align-items: center;
+         gap: 10px;
+         padding: 5px;
+         border-bottom: 1px solid cadetblue;
+         &-img {
+            width: 50px;
+            border-radius: 200px;
+         }
+         &-name {
+            color: grey;
+         }
+         &-title {
+            color: cadetblue;
+         }
+      }
+      &-icons {
+         margin-top: 20px;
+         float: right;
+      }
+   }          
+}
+
+
