@@ -5,7 +5,7 @@ import Card from "../components/Card";
 
 export default function Posts() {
     const postList = useAppSelector(posts);
-    const postState = postList.slice().sort((a, b) => a.title.localeCompare(b.title));
+    const desorderedPost = postList.slice().sort((a, b) => a.title.localeCompare(b.title));
     const dispatch = useAppDispatch();
    
     useEffect(() => {
@@ -14,7 +14,7 @@ export default function Posts() {
   
     return (
         <div className="Posts">
-            {postState.map((post) =>
+            {desorderedPost.map((post) =>
                 <Card post={post} key={post.id} /> 
             )}
         </div>

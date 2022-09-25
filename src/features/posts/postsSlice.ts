@@ -1,21 +1,14 @@
-import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { PostType } from '../../types';
 import axios from 'axios';
 import type { RootState } from '../../app/store';
 interface PostState {
   postList: PostType[];
-  singlePost: PostType,
   status: 'idle' | 'loading' | 'failed';
 }
 
 const initialState: PostState = {
   postList: [],
-  singlePost: {
-    id: 0,
-    userId: 0,
-    title: "",
-    body: ""
-  },
   status: 'idle',
 };
 
@@ -28,14 +21,23 @@ export const getPosts = createAsyncThunk(
     return response.data;
   },
 );
+export const getPost = createAsyncThunk(
+  'posts/getPost',
+  async (id:number) => {
+    const response = await axios.get(
+      `https://jsonplaceholder.typicode.com/posts/${id}`
+    );
+    return response.data;
+  },
+);
 
 export const postsSlice = createSlice({
   name: 'posts',
   initialState,
   reducers: {
     deletePost(state, action) {
-      state.postList.filter((d) => d.id !== action.payload);
-    }
+      state.postList = state.postList.filter((d) => d.id !== action.payload);
+    },
   },
   extraReducers: (builder) => {
     builder
@@ -54,5 +56,4 @@ export const postsSlice = createSlice({
 
 export const { deletePost } = postsSlice.actions;
 export const posts = (state: RootState) => state.posts.postList;
-export const onePost = (state: RootState) => state.posts.singlePost;
 export default postsSlice.reducer;

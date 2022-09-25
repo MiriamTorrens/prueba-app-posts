@@ -2,12 +2,11 @@ import { PropsCard } from "../types";
 import { users, userImages } from "../features/posts/users";
 import { FiEdit2 } from "react-icons/fi";
 import { AiOutlineDelete } from "react-icons/ai";
-import { deletePost, posts } from "../features/posts/postsSlice";
-import { useAppDispatch, useAppSelector } from "../app/hooks";
+import { deletePost } from "../features/posts/postsSlice";
+import { useAppDispatch } from "../app/hooks";
 
 export default function Card({ post }: PropsCard) {
     const dispatch = useAppDispatch();
-    const postList = useAppSelector(posts);
 
     return (
         <div className="Posts__item" key={post.id}>
@@ -21,10 +20,7 @@ export default function Card({ post }: PropsCard) {
             <p className="Posts__item-body">{post.body}</p>
             <div className="Posts__item-icons">
                 <FiEdit2 />
-                <AiOutlineDelete onClick={() => {
-                    dispatch(deletePost(post.id));
-                    console.log(postList.length);
-                } } />
+                <AiOutlineDelete onClick={() => dispatch(deletePost(post.id))} />
             </div>
         </div>
     )
