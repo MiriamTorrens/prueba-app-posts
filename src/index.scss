@@ -1,17 +1,29 @@
+@import url('https://fonts.googleapis.com/css2?family=Archivo&family=Indie+Flower&display=swap');
+
+:root{
+    --toastify-color-progress-light: linear-gradient(to right,
+      rgb(60, 97, 98),
+      rgb(78, 153, 155),
+      cadetblue);
+    --primary-color: cadetblue;
+    --secondary-color: rgb(53, 94, 96);
+}
 * {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
 }
 body {
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  min-width: 320px;
+  font-family: 'Archivo', sans-serif;
+  font-size: 14px;
 }
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 } 
+
+::-webkit-scrollbar {
+  display: none;
+}
