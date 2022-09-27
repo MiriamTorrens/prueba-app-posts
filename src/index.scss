@@ -1,12 +1,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Archivo&family=Indie+Flower&display=swap');
 
 :root{
-    --toastify-color-progress-light: linear-gradient(to right,
-      rgb(60, 97, 98),
-      rgb(78, 153, 155),
-      cadetblue);
-    --primary-color: cadetblue;
-    --secondary-color: rgb(53, 94, 96);
+    --primary-color: #00c1d5;
+    --secondary-color: #166391;
+    --tertiary-color: #fbd872;
 }
 * {
   box-sizing: border-box;
@@ -25,5 +22,9 @@ code {
 } 
 
 ::-webkit-scrollbar {
+  display: none;
+}
+
+.Toastify__close-button{
   display: none;
 }

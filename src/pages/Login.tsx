@@ -25,23 +25,23 @@ export default function Login() {
         } 
     }
     return (
-        <div className="login">
-            <div className="login__wraper">
+        <div className="Login">
+            <div className="Login__wraper">
                 <HeaderLogin />
-                <p className="login__welcome">¡Bienvenido/a de nuevo!</p>
-                <form onSubmit={(e) => handleSubmit(e)} className="login__form">
+                <p className="Login__welcome"><b>¡Bienvenido/a de nuevo!</b><br/>Introduce tus datos de acceso</p>
+                <form onSubmit={(e) => handleSubmit(e)} className="Login__form">
                     <input type="text"
                         placeholder="Introduce tu nombre"
                         value={name}
                         onChange={e => setName(e.target.value)}
-                        className="login__form-input login__form-input-user"/><br />
+                        className="Login__form-input Login__form-input-user" /><br />
                     <input
                         type="password"
                         placeholder="Introduce tu contraseña"
                         value={password}
                         onChange={e => setPassword(e.target.value)}
-                        className="login__form-input login__form-input-password"/><br />
-                    <input type="submit" value="Iniciar sesión" className="login__form-submit" />
+                        className="Login__form-input Login__form-input-password" /><br/>
+                    <input type="submit" value="Iniciar sesión" className="Login__form-submit" />
                 </form>
             </div>
         </div>

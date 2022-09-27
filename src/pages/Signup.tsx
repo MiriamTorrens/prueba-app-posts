@@ -23,29 +23,29 @@ export default function Signup() {
     }
     
     return (
-        <div className="login">
-            <div className="login__wraper">
+        <div className="Login">
+            <div className="Login__wraper">
                 <HeaderLogin />
-                <p className="login__welcome">¡Bienvenido/a!, rellena el formulario para registrarte</p>
-                <form onSubmit={(e) => handleSubmit(e)} className="login__form">
+                <p className="Login__welcome"><b>¡Bienvenido/a!</b><br/>Regístrate para acceder</p>
+                <form onSubmit={(e) => handleSubmit(e)} className="Login__form">
                     <input type="text"
                         placeholder="Introduce tu nombre"
                         value={name}
                         onChange={e => setName(e.target.value)}
-                        className="login__form-input login__form-input-user"/><br />
+                        className="Login__form-input Login__form-input-user"/><br />
                     <input
                         type="password"
                         placeholder="Introduce tu contraseña"
                         value={password}
                         onChange={e => setPassword(e.target.value)}
-                        className="login__form-input login__form-input-password"/><br />
+                        className="Login__form-input Login__form-input-password"/><br />
                     <input
                         type="password"
                         placeholder="Repite tu contraseña"
                         value={repeatPassword}
                         onChange={e => setRepeatPassword(e.target.value)}
-                        className="login__form-input login__form-input-password"/><br />
-                    <input type="submit" value="Registrarse" className="login__form-submit"/>
+                        className="Login__form-input Login__form-input-password"/><br />
+                    <input type="submit" value="Registrarse" className="Login__form-submit"/>
                 </form>
             </div>
         </div>

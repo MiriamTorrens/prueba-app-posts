@@ -9,16 +9,6 @@ import 'react-toastify/dist/ReactToastify.css';
 
 export default function Card({ post }: PropsCard) {
     const dispatch = useAppDispatch();
-    const handleDelete = () => {
-        if (localStorage.getItem("authorized")) {
-            dispatch(deletePost(post.id))
-        } else {
-            toast('Para eliminar un post tienes que iniciar sesión', {
-                position: toast.POSITION.TOP_CENTER,
-                progressClassName: "progress"
-            });
-        }
-    }
     const handleUpdate = () => {
         if (localStorage.getItem("user")) {
             alert("Hola");
@@ -34,14 +24,14 @@ export default function Card({ post }: PropsCard) {
             <div className="Posts__item-user">
                 <img src={userImages[post.userId - 1]} alt="imagen de usuario" className="Posts__item-user-img" />
                 <p>
+                    <span className="Posts__item-user-title"><b>{post.title[0].toUpperCase() + post.title.substring(1, post.title.length).toLowerCase()}</b></span><br/>
                     <span className="Posts__item-user-name">{users[post.userId - 1].name}</span><br />
-                    <span className="Posts__item-user-title"><b>{post.title[0].toUpperCase()+post.title.substring(1, post.title.length).toLowerCase()}</b></span>
                 </p>
             </div>
             <p className="Posts__item-body">{post.body}</p>
-            <div className="Posts__item-icons">
-                <FiEdit2 onClick={handleUpdate}  size={25} color={"cadetblue"}  />
-                <AiOutlineDelete onClick={handleDelete}  size={25} color={"cadetblue"} />
+            <div className="Posts__item-buttons">
+                <button onClick={handleUpdate}>Editar <FiEdit2 size={18} color={"var(--secondary-color)"}  /></button>
+                <button onClick={() => dispatch(deletePost(post.id))}>Eliminar <AiOutlineDelete size={18} color={"var(--secondary-color)"} /></button> 
             </div>
         </div>
     )
