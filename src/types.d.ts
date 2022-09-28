@@ -4,13 +4,16 @@ export interface PostType {
     title: string
     body: string
 }
-
 export interface UserType {
     id: number
     name: string
     username: string
 }
-
 export interface PropsCard {
+    post: PostType
+}
+export interface PropsModal {
+    open: boolean
+    handleClose: () => void
     post: PostType
 }

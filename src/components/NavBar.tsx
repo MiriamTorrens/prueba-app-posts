@@ -1,8 +1,7 @@
 import { TbLogout } from "react-icons/tb";
-import Logo from '../assets/logotipo.png';
+import Logo from '../assets/logo.png';
 
 export default function NavBar() {
-
     return (
         <div className="Navbar">
             <img src={Logo} alt="logotipo" className="Header__logo Navbar__logo"></img>

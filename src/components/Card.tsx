@@ -4,20 +4,15 @@ import { FiEdit2 } from "react-icons/fi";
 import { AiOutlineDelete } from "react-icons/ai";
 import { deletePost } from "../features/posts/postsSlice";
 import { useAppDispatch } from "../app/hooks";
-import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { useState } from "react";
+import ModalUpdate from "./ModalUpdate";
 
 export default function Card({ post }: PropsCard) {
+    const [open, setOpen] = useState(false);
+    const handleOpen = () => setOpen(true);
+    const handleClose = () => setOpen(false);
     const dispatch = useAppDispatch();
-    const handleUpdate = () => {
-        if (localStorage.getItem("user")) {
-            alert("Hola");
-        } else {
-            toast('Para editar un post tienes que iniciar sesión', {
-                position: toast.POSITION.TOP_CENTER,
-        });
-        }
-    }
 
     return (
         <div className="Posts__item" key={post.id}>
@@ -30,9 +25,10 @@ export default function Card({ post }: PropsCard) {
             </div>
             <p className="Posts__item-body">{post.body}</p>
             <div className="Posts__item-buttons">
-                <button onClick={handleUpdate}>Editar <FiEdit2 size={18} color={"var(--secondary-color)"}  /></button>
-                <button onClick={() => dispatch(deletePost(post.id))}>Eliminar <AiOutlineDelete size={18} color={"var(--secondary-color)"} /></button> 
+                <button onClick={handleOpen} className="Posts__item-buttons-button Posts__item-buttons-update">Editar <FiEdit2 size={18} color={"var(--secondary-color)"} /></button>
+                <button onClick={() => dispatch(deletePost(post.id))} className="Posts__item-buttons-button Posts__item-buttons-delete">Eliminar <AiOutlineDelete size={18} color={"white"} /></button> 
             </div>
+            <ModalUpdate open={open} handleClose={handleClose} post={post} />
         </div>
     )
 }
