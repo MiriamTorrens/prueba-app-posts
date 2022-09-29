@@ -15,18 +15,18 @@ export default function Card({ post }: PropsCard) {
     const dispatch = useAppDispatch();
 
     return (
-        <div className="Posts__item" key={post.id}>
-            <div className="Posts__item-user">
-                <img src={userImages[post.userId - 1]} alt="imagen de usuario" className="Posts__item-user-img" />
+        <div className="posts__item" key={post.id}>
+            <div className="posts__item-user">
+                <img src={userImages[post.userId - 1]} alt="imagen de usuario" className="posts__item-user-img" />
                 <p>
-                    <span className="Posts__item-user-title"><b>{post.title[0].toUpperCase() + post.title.substring(1, post.title.length).toLowerCase()}</b></span><br/>
-                    <span className="Posts__item-user-name">{users[post.userId - 1].name}</span><br />
+                    <span className="posts__item-user-title"><b>{post.title[0].toUpperCase() + post.title.substring(1, post.title.length).toLowerCase()}</b></span><br/>
+                    <span className="posts__item-user-name">{users[post.userId - 1].name}</span><br />
                 </p>
             </div>
-            <p className="Posts__item-body">{post.body}</p>
-            <div className="Posts__item-buttons">
-                <button onClick={handleOpen} className="Posts__item-buttons-button Posts__item-buttons-update">Editar <FiEdit2 size={18} color={"var(--secondary-color)"} /></button>
-                <button onClick={() => dispatch(deletePost(post.id))} className="Posts__item-buttons-button Posts__item-buttons-delete">Eliminar <AiOutlineDelete size={18} color={"white"} /></button> 
+            <p className="posts__item-body">{post.body}</p>
+            <div className="posts__item-buttons">
+                <button onClick={handleOpen} className="posts__item-buttons-button posts__item-buttons-update">Editar <FiEdit2 size={18} color={"var(--secondary-color)"} /></button>
+                <button onClick={() => dispatch(deletePost(post.id))} className="posts__item-buttons-button posts__item-buttons-delete">Eliminar <AiOutlineDelete size={18} color={"white"} /></button> 
             </div>
             <ModalUpdate open={open} handleClose={handleClose} post={post} />
         </div>

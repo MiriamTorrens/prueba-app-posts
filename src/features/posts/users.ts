@@ -3,7 +3,20 @@ import axios from "axios";
 
 export let users: UserType[];
 export const getUsers = async () => {
-    await axios.get("https://jsonplaceholder.typicode.com/users").then(response => users = response.data);
+    try {
+      const response = await axios.get("https://jsonplaceholder.typicode.com/users");
+      return users = response.data;
+    } catch (err) {
+      if (axios.isAxiosError(err)) {
+        if (!err?.response) {
+          console.log("No Server Response");
+        } else if (err.response?.status === 400) {
+          console.log("Missing Username or Password");
+        } else if (err.response?.status === 401) {
+          console.log("Unauthorized");
+        }
+      }
+    }
 }
 getUsers();
 

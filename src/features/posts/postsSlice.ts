@@ -1,5 +1,5 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import { PostType } from '../../types';
+import { PostType, UserType } from '../../types';
 import axios from 'axios';
 import type { RootState } from '../../app/store';
 import { toast } from 'react-toastify';
@@ -23,22 +23,22 @@ const initialState: PostState = {
 export const getPosts = createAsyncThunk(
   'posts/getPosts',
   async () => {
-    const response = await axios.get(
-      "https://jsonplaceholder.typicode.com/posts"
-    );
-    return response.data;
+    try {
+      const response = await axios.get("https://jsonplaceholder.typicode.com/posts");
+      return response.data;
+    } catch (err) {
+      if (axios.isAxiosError(err)) {
+        if (!err?.response) {
+          console.log("No Server Response");
+        } else if (err.response?.status === 400) {
+          console.log("Missing Username or Password");
+        } else if (err.response?.status === 401) {
+          console.log("Unauthorized");
+        }
+      }
+    }
   },
 );
-
-// export const getPost = createAsyncThunk(
-//   'posts/getPost',
-//   async (id:number) => {
-//     const response = await axios.get(
-//       `https://jsonplaceholder.typicode.com/posts/${id}`
-//     );
-//     return response.data;
-//   },
-// );
 
 export const postsSlice = createSlice({
   name: 'posts',
@@ -60,7 +60,7 @@ export const postsSlice = createSlice({
         position: toast.POSITION.TOP_CENTER,
         hideProgressBar: true,
         autoClose: 2000
-        });
+      });
     },
   },
   extraReducers: (builder) => {
@@ -75,20 +75,11 @@ export const postsSlice = createSlice({
       .addCase(getPosts.rejected, (state) => {
         state.status = 'failed';
       })
-      //  .addCase(getPost.pending, (state) => {
-      //   state.status = 'loading';
-      // })
-      // .addCase(getPost.fulfilled, (state, action) => {
-      //   state.status = 'idle';
-      //   state.singlePost = action.payload;
-      // })
-      // .addCase(getPost.rejected, (state) => {
-      //   state.status = 'failed';
-      // })
   },
 });
 
 export const { deletePost, updatePost } = postsSlice.actions;
 export const posts = (state: RootState) => state.posts.postList;
 export const post = (state: RootState) => state.posts.singlePost;
+export const status = (state: RootState) => state.posts.status === "loading";
 export default postsSlice.reducer;
