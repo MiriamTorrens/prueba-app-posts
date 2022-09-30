@@ -1,9 +1,13 @@
-import { configureStore, ThunkAction, Action } from '@reduxjs/toolkit';
-import postsReducer from '../features/posts/postsSlice';
+import { configureStore, ThunkAction, Action } from "@reduxjs/toolkit";
+import postsReducer from "../features/posts/postsSlice";
+import loginReducer from "../features/loginSlice";
+import signupReducer from "../features/signupSlice";
 
 export const store = configureStore({
   reducer: {
     posts: postsReducer,
+    login: loginReducer,
+    signup: signupReducer,
   },
 });
 
