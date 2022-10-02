@@ -20,7 +20,9 @@ export default function Posts() {
 
   useEffect(() => {
     const filteredPost = postList.filter(
-      (p) => p.body.includes(query) || p.title.includes(query)
+      (p) =>
+        p.body.includes(query.toLowerCase()) ||
+        p.title.includes(query.toLowerCase())
     );
     setPostState(filteredPost);
   }, [dispatch, query, postList]);
