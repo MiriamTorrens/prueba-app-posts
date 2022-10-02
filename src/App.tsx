@@ -1,4 +1,4 @@
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, HashRouter } from "react-router-dom";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
 import Posts from "./pages/Posts";
@@ -9,7 +9,7 @@ import NotFound from "./components/NotFound";
 
 function App() {
   return (
-    <>
+    <HashRouter>
       <Routes>
         <Route path="/" element={<PrivateRoute component={Posts} />} />
         <Route path="/login" element={<Login />} />
@@ -17,7 +17,7 @@ function App() {
         <Route path="*" element={<NotFound />} />
       </Routes>
       <ToastContainer />
-    </>
+    </HashRouter>
   );
 }
 
