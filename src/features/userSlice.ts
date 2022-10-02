@@ -2,6 +2,7 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { toast } from "react-toastify";
 import { styleToast, styleToastWelcome } from "../styles/styleToast";
 import { UserType } from "../types";
+import type { RootState } from "../app/store";
 
 function getUsersStorage() {
   const fromStorage = localStorage.getItem("users");
@@ -9,10 +10,14 @@ function getUsersStorage() {
 }
 export interface userState {
   users: UserType[];
+  auth: boolean;
+  register: boolean;
 }
 
 const initialState: userState = {
   users: getUsersStorage(),
+  auth: false,
+  register: false,
 };
 
 export const userSlice = createSlice({
@@ -31,7 +36,7 @@ export const userSlice = createSlice({
             "¡Registro completado con éxito! Ya puedes iniciar sesión",
             styleToast
           );
-          setTimeout(() => (window.location.href = "/login"), 2000);
+          state.register = true;
         } else {
           toast.error(
             "La contraseña debe tener al menos 6 caracteres",
@@ -61,22 +66,25 @@ export const userSlice = createSlice({
             `!Bienvenido/a ${localStorage.getItem("user")}! :)`,
             styleToastWelcome
           );
-          setTimeout(() => (window.location.href = "/"), 800);
+          state.auth = true;
         } else {
           toast.error("Usuario o contraseña incorrecto", styleToast);
         }
       }
     },
-    logout() {
+    logout(state) {
       localStorage.removeItem("token");
+      localStorage.removeItem("user");
+      state.auth = false;
       toast(
         `¡Hasta luego/a ${localStorage.getItem("user")}! :)`,
         styleToastWelcome
       );
-      setTimeout(() => (window.location.href = "/login"), 800);
     },
   },
 });
 
 export const { register, login, logout } = userSlice.actions;
+export const auth = (state: RootState) => state.user.auth;
+export const signup = (state: RootState) => state.user.register;
 export default userSlice.reducer;
