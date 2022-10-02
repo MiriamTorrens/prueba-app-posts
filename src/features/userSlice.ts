@@ -1,14 +1,12 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { toast } from "react-toastify";
 import { styleToast, styleToastWelcome } from "../styles/styleToast";
-import type { RootState } from "../app/store";
 import { UserType } from "../types";
 
 function getUsersStorage() {
   const fromStorage = localStorage.getItem("users");
   return fromStorage ? JSON.parse(fromStorage) : [];
 }
-
 export interface userState {
   users: UserType[];
 }
@@ -60,10 +58,10 @@ export const userSlice = createSlice({
             name.charAt(0).toUpperCase() + name.slice(1)
           );
           toast(
-            `Bienvenido/a ${localStorage.getItem("user")}`,
+            `!Bienvenido/a ${localStorage.getItem("user")}! :)`,
             styleToastWelcome
           );
-          setTimeout(() => (window.location.href = "/"), 2000);
+          setTimeout(() => (window.location.href = "/"), 800);
         } else {
           toast.error("Usuario o contraseña incorrecto", styleToast);
         }
@@ -71,8 +69,11 @@ export const userSlice = createSlice({
     },
     logout() {
       localStorage.removeItem("token");
-      toast(`Hasta luego/a ${localStorage.getItem("user")}`, styleToastWelcome);
-      setTimeout(() => (window.location.href = "/login"), 1000);
+      toast(
+        `¡Hasta luego/a ${localStorage.getItem("user")}! :)`,
+        styleToastWelcome
+      );
+      setTimeout(() => (window.location.href = "/login"), 800);
     },
   },
 });

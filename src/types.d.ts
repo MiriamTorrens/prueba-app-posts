@@ -20,6 +20,9 @@ export interface PropsNavBar {
   query: string;
   setQuery: (string) => void;
 }
+export interface PropsNoResults {
+  query: string;
+}
 export interface PropsModal {
   open: boolean;
   handleClose: () => void;

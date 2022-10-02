@@ -5,6 +5,7 @@ import NavBar from "../components/NavBar";
 import Card from "../components/Card";
 import Spinner from "../components/Spinner";
 import { PostType } from "../types";
+import NoResults from "../components/NoResults";
 
 export default function Posts() {
   const postList = useAppSelector(posts);
@@ -31,11 +32,15 @@ export default function Posts() {
         <Spinner />
       ) : (
         <div>
-          <div className="posts">
-            {postState.map((post) => (
-              <Card post={post} key={post.id} />
-            ))}
-          </div>
+          {postState.length ? (
+            <div className="posts">
+              {postState.map((post) => (
+                <Card post={post} key={post.id} />
+              ))}
+            </div>
+          ) : (
+            <NoResults query={query} />
+          )}
         </div>
       )}
     </>
