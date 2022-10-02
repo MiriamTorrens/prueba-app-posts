@@ -9,7 +9,7 @@ import NotFound from "./components/NotFound";
 
 function App() {
   return (
-    <HashRouter basename={process.env.PUBLIC_URL}>
+    <HashRouter>
       <Routes>
         <Route path="/" element={<PrivateRoute component={Posts} />} />
         <Route path="/login" element={<Login />} />
