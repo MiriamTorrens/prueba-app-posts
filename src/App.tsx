@@ -17,9 +17,11 @@ function App() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    authenticated === true
+    authenticated
       ? navigate("/", { replace: true })
-      : navigate("/login", { replace: true });
+      : authenticated === false
+      ? navigate("/login", { replace: true })
+      : navigate("/", { replace: true });
     register === true && navigate("/login", { replace: true });
   }, [authenticated, register]);
 

@@ -10,13 +10,13 @@ function getUsersStorage() {
 }
 export interface userState {
   users: UserType[];
-  auth: boolean;
+  auth: boolean | null;
   register: boolean;
 }
 
 const initialState: userState = {
   users: getUsersStorage(),
-  auth: false,
+  auth: null,
   register: false,
 };
 
@@ -67,6 +67,7 @@ export const userSlice = createSlice({
             styleToastWelcome
           );
           state.auth = true;
+          state.register = false;
         } else {
           toast.error("Usuario o contraseña incorrecto", styleToast);
         }
@@ -74,7 +75,6 @@ export const userSlice = createSlice({
     },
     logout(state) {
       localStorage.removeItem("token");
-      localStorage.removeItem("user");
       state.auth = false;
       toast(
         `¡Hasta luego/a ${localStorage.getItem("user")}! :)`,
