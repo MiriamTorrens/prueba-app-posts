@@ -41,7 +41,7 @@ export default function Posts() {
               ))}
             </div>
           ) : (
-            <NoResults query={query} />
+            query.length && <NoResults query={query} />
           )}
         </div>
       )}
