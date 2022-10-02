@@ -106,6 +106,7 @@
   background: linear-gradient(to bottom, #005587, #5394b9);
   z-index: 1;
   display: flex;
+  flex-wrap: wrap;
   justify-content: space-between;
   align-items: center;
   box-shadow: -5px 10px 15px -12px rgba(199, 199, 199, 1);
@@ -113,6 +114,9 @@
   width: 100%;
   &__logo {
     margin-left: 20px;
+    &-icon {
+      display: none;
+    }
   }
   &__logout {
     display: flex;
@@ -125,6 +129,23 @@
       font-weight: 600;
       letter-spacing: 0.1em;
     }
+    &-icon {
+      cursor: pointer;
+      &:hover {
+        color: blue;
+      }
+    }
+  }
+  &__input {
+    height: 30px;
+    border: none;
+    border-radius: 8px;
+    padding-left: 30px;
+    width: 50%;
+    background-image: url("../assets/search.png");
+    background-repeat: no-repeat;
+    background-position: 10px center;
+    outline: none;
   }
 }
 
@@ -224,15 +245,40 @@
 .modal {
   &__user,
   &__textarea,
-  &__button {
+  &__buttons {
     opacity: 1;
     animation: none;
+  }
+  &__buttons {
+    justify-content: center;
+    &-button {
+      justify-content: center;
+    }
+    &-button-cancel {
+      background-color: var(--primary-color);
+      color: #fff;
+    }
   }
   &__close {
     float: right;
   }
+  &__text {
+    font-size: 1.2em;
+    margin: 20px 0 10px 0;
+  }
+  &__info {
+    display: flex;
+    margin: auto;
+  }
+  &__delete {
+    text-align: center;
+  }
 }
-
+.toast-welcome {
+  font-size: 30px;
+  color: var(--primary-color);
+  background-color: var(--secondary-color);
+}
 @keyframes fadein {
   from {
     opacity: 0;
@@ -277,5 +323,30 @@
         width: 40%;
       }
     }
+  }
+  .modal__buttons-button {
+    width: 40%;
+  }
+}
+
+@media only screen and (max-width: 790px) {
+  .navbar {
+    &__logo {
+      display: none;
+      &-icon {
+        display: block;
+        width: 50px;
+        margin-left: 10px;
+      }
+    }
+    &__input {
+      width: 55%;
+    }
+  }
+}
+
+@media only screen and (min-width: 1600px) {
+  .posts__item-buttons-button {
+    width: 25%;
   }
 }

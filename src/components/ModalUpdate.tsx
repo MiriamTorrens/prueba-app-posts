@@ -23,31 +23,21 @@ const style = {
 
 export default function ModalUpdate({ open, handleClose, post }: PropsModal) {
   const dispatch = useAppDispatch();
-  const [closeOnEnter, setCloseOnEnter] = useState<boolean>(false);
   const [body, setBody] = useState(post.body);
-  const updatedPost: PostType = {
-    id: post.id,
-    userId: post.userId,
-    title: post.title,
-    body: body,
-  };
-
-  if (closeOnEnter === true) handleClose();
 
   const handleUpdate = () => {
+    const updatedPost: PostType = {
+      id: post.id,
+      userId: post.userId,
+      title: post.title,
+      body: body,
+    };
     dispatch(updatePost(updatedPost));
     handleClose();
-  };
-  const handleKeyDown = (e: React.KeyboardEvent<HTMLTextAreaElement>) => {
-    if (e.key === "Enter") {
-      handleUpdate();
-      setCloseOnEnter(true);
-    }
   };
 
   useEffect(() => {
     setBody(post.body);
-    setCloseOnEnter(false);
   }, [post]);
 
   return (
@@ -89,16 +79,15 @@ export default function ModalUpdate({ open, handleClose, post }: PropsModal) {
             <textarea
               value={body}
               onChange={(e) => setBody(e.target.value)}
-              onKeyDown={(e) => handleKeyDown(e)}
               className="posts__item-textarea modal__textarea"
             ></textarea>
-            <div className="posts__item-buttons modal__button">
+            <div className="posts__item-buttons modal__buttons">
               <button
-                className="posts__item-buttons-button posts__item-buttons-save"
+                className="posts__item-buttons-button posts__item-buttons-save modal__buttons-button"
                 onClick={() => handleUpdate()}
               >
                 <AiOutlineSave size={18} color={"var(--secondary-color)"} />
-                Guardar
+                {"\u00A0"} Guardar
               </button>
             </div>
           </Box>

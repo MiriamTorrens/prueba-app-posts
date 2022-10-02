@@ -1,12 +1,20 @@
 import { useState } from "react";
-import { toast } from "react-toastify";
+import { login } from "../features/userSlice";
+import { UserType } from "../types";
 import HeaderLogin from "../components/HeaderLogin";
 import { AiFillEye, AiFillEyeInvisible } from "react-icons/ai";
+import { useAppDispatch } from "../app/hooks";
 
 export default function Login() {
+  const dispatch = useAppDispatch();
   const [name, setName] = useState<string>("");
   const [password, setPassword] = useState<string>("");
   const [show, setShow] = useState<string>("password");
+
+  const user: UserType = {
+    name: name,
+    password: password,
+  };
 
   const handleShow = () => {
     show === "password" ? setShow("text") : setShow("password");
@@ -14,22 +22,7 @@ export default function Login() {
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    if (localStorage.getItem("user")) {
-      const user = JSON.parse(localStorage.getItem("user")!);
-      if (user.name === name && user.password === password) {
-        localStorage.setItem("authorized", "true");
-      } else {
-        toast.error("Usuario o contraseña incorrecto", {
-          position: toast.POSITION.TOP_CENTER,
-          progressClassName: "progress",
-        });
-      }
-    } else {
-      toast.error("El usuario no existe", {
-        position: toast.POSITION.TOP_CENTER,
-        progressClassName: "progress",
-      });
-    }
+    dispatch(login(user));
   };
   return (
     <div className="login">
@@ -47,6 +40,7 @@ export default function Login() {
             value={name}
             onChange={(e) => setName(e.target.value)}
             className="login__form-input login__form-input-user"
+            required
           />
           <br />
           <div className="login__form-input-visible">
@@ -56,6 +50,7 @@ export default function Login() {
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               className="login__form-input login__form-input-password"
+              required
             />
             {show === "password" ? (
               <AiFillEye

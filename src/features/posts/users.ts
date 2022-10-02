@@ -1,7 +1,7 @@
-import { UserType } from "../../types";
+import { UserPostType } from "../../types";
 import axios from "axios";
 
-export let users: UserType[];
+export let users: UserPostType[];
 export const getUsers = async () => {
   try {
     const response = await axios.get(

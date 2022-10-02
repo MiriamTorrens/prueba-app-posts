@@ -2,12 +2,21 @@ import { useState } from "react";
 import { toast } from "react-toastify";
 import HeaderLogin from "../components/HeaderLogin";
 import { AiFillEye, AiFillEyeInvisible } from "react-icons/ai";
+import { register } from "../features/userSlice";
+import { useAppDispatch } from "../app/hooks";
+import { UserType } from "../types";
 
 export default function Signup() {
+  const dispatch = useAppDispatch();
   const [name, setName] = useState<string>("");
   const [password, setPassword] = useState<string>("");
   const [repeatPassword, setRepeatPassword] = useState<string>("");
   const [show, setShow] = useState<string>("password");
+
+  const user: UserType = {
+    name: name,
+    password: password,
+  };
 
   const handleShow = () => {
     show === "password" ? setShow("text") : setShow("password");
@@ -15,18 +24,13 @@ export default function Signup() {
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    const user = {
-      name: name,
-      password: password,
-    };
-    if (password === repeatPassword) {
-      localStorage.setItem("user", JSON.stringify(user));
-    } else {
-      toast.error("La contraseña no coincide", {
-        position: toast.POSITION.TOP_CENTER,
-        progressClassName: "progress",
-      });
-    }
+    password === repeatPassword
+      ? dispatch(register(user))
+      : toast.error("Las contraseñas no coinciden", {
+          position: toast.POSITION.TOP_CENTER,
+          hideProgressBar: true,
+          autoClose: 1000,
+        });
   };
 
   return (
@@ -45,6 +49,7 @@ export default function Signup() {
             value={name}
             onChange={(e) => setName(e.target.value)}
             className="login__form-input login__form-input-user"
+            required
           />
           <br />
           <div className="login__form-input-visible">
@@ -54,6 +59,7 @@ export default function Signup() {
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               className="login__form-input login__form-input-password"
+              required
             />
             {show === "password" ? (
               <AiFillEye
@@ -77,6 +83,7 @@ export default function Signup() {
               value={repeatPassword}
               onChange={(e) => setRepeatPassword(e.target.value)}
               className="login__form-input login__form-input-password"
+              required
             />
             {show === "password" ? (
               <AiFillEye
