@@ -2,7 +2,7 @@
   "name": "post-app",
   "version": "0.1.0",
   "private": true,
-  "homepage":"https://miriamtorrens.github.io/prueba-app-posts/",
+  "homepage": "https://miriamtorrens.github.io/prueba-app-posts/",
   "dependencies": {
     "@emotion/react": "^11.10.4",
     "@emotion/styled": "^11.10.4",
@@ -35,7 +35,8 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "predeploy": "npm run build",
-    "deploy": "gh-pages -d build"
+    "deploy": "gh-pages -d build",
+    "cypress:open": "cypress open"
   },
   "eslintConfig": {
     "extends": [
@@ -58,6 +59,7 @@
   "devDependencies": {
     "@types/bcryptjs": "^2.4.2",
     "@types/jsonwebtoken": "^8.5.9",
+    "cypress": "^10.9.0",
     "gh-pages": "^4.0.0"
   }
 }

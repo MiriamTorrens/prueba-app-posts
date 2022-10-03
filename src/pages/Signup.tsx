@@ -79,7 +79,7 @@ export default function Signup() {
           <div className="login__form-input-visible">
             <input
               type={show}
-              placeholder="Introduce tu contraseña"
+              placeholder="Repite tu contraseña"
               value={repeatPassword}
               onChange={(e) => setRepeatPassword(e.target.value)}
               className="login__form-input login__form-input-password"
