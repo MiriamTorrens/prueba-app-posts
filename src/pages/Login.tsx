@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { login } from "../features/userSlice";
+import { login } from "../features/authSlice";
 import { UserType } from "../types";
 import HeaderLogin from "../components/HeaderLogin";
 import { AiFillEye, AiFillEyeInvisible } from "react-icons/ai";

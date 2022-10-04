@@ -4,7 +4,7 @@ import Signup from "./pages/Signup";
 import Posts from "./pages/Posts";
 import { ToastContainer } from "react-toastify";
 import PrivateRoute from "./app/PrivateRoute";
-import { auth, signup } from "./features/userSlice";
+import { auth, signup } from "./features/authSlice";
 import { useAppSelector } from "./app/hooks";
 import { useEffect } from "react";
 
@@ -33,7 +33,9 @@ function App() {
         <Route path="/signup" element={<Signup />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
-      <ToastContainer />
+      <div id="toast">
+        <ToastContainer />
+      </div>
     </>
   );
 }

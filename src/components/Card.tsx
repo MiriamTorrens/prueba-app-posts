@@ -37,7 +37,7 @@ export default function Card({ post }: PropsCard) {
           <br />
         </p>
       </div>
-      <p className="posts__item-body">{post.body}</p>
+      <p className="posts__item-body">{post.body} </p>
       <div className="posts__item-buttons">
         <button
           onClick={handleOpenUpdate}

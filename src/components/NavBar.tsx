@@ -1,7 +1,7 @@
 import { TbLogout } from "react-icons/tb";
 import Logo from "../assets/logo.png";
 import Favicon from "../assets/favicon.png";
-import { logout } from "../features/userSlice";
+import { logout } from "../features/authSlice";
 import { useAppDispatch } from "../app/hooks";
 import { PropsNavBar } from "../types";
 
@@ -31,6 +31,7 @@ export default function NavBar({ query, setQuery }: PropsNavBar) {
           color={"var(--tertiary-color)"}
           className="navbar__logout-icon"
           onClick={() => dispatch(logout())}
+          id="logout"
         />
       </div>
     </div>

@@ -49,7 +49,7 @@ export default function ModalUpdate({ open, handleClose, post }: PropsModal) {
         aria-describedby="modal-modal-description"
       >
         {post && post.id > 0 ? (
-          <Box sx={style} className="modal">
+          <Box sx={style} className="modal" id="modal-update">
             <FaWindowClose
               fill={"var(--secondary-color)"}
               size={20}
@@ -87,7 +87,7 @@ export default function ModalUpdate({ open, handleClose, post }: PropsModal) {
                 onClick={() => handleUpdate()}
               >
                 <AiOutlineSave size={18} color={"var(--secondary-color)"} />
-                {"\u00A0"} Guardar
+                Guardar
               </button>
             </div>
           </Box>

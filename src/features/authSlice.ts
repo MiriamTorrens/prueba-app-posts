@@ -8,7 +8,8 @@ function getUsersStorage() {
   const fromStorage = localStorage.getItem("users");
   return fromStorage ? JSON.parse(fromStorage) : [];
 }
-export interface userState {
+
+interface userState {
   users: UserType[];
   auth: boolean | null;
   register: boolean;
@@ -20,8 +21,8 @@ const initialState: userState = {
   register: false,
 };
 
-export const userSlice = createSlice({
-  name: "user",
+export const authorizationSlice = createSlice({
+  name: "authorization",
   initialState,
   reducers: {
     register(state, action: PayloadAction<UserType>) {
@@ -84,7 +85,7 @@ export const userSlice = createSlice({
   },
 });
 
-export const { register, login, logout } = userSlice.actions;
-export const auth = (state: RootState) => state.user.auth;
-export const signup = (state: RootState) => state.user.register;
-export default userSlice.reducer;
+export const { register, login, logout } = authorizationSlice.actions;
+export const auth = (state: RootState) => state.authorization.auth;
+export const signup = (state: RootState) => state.authorization.register;
+export default authorizationSlice.reducer;

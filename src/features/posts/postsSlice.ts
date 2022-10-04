@@ -24,10 +24,6 @@ export const getPosts = createAsyncThunk("posts/getPosts", async () => {
     if (axios.isAxiosError(err)) {
       if (!err?.response) {
         console.log("No Server Response");
-      } else if (err.response?.status === 400) {
-        console.log("Missing Username or Password");
-      } else if (err.response?.status === 401) {
-        console.log("Unauthorized");
       }
     }
   }

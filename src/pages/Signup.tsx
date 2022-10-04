@@ -2,7 +2,7 @@ import { useState } from "react";
 import { toast } from "react-toastify";
 import HeaderLogin from "../components/HeaderLogin";
 import { AiFillEye, AiFillEyeInvisible } from "react-icons/ai";
-import { register } from "../features/userSlice";
+import { register } from "../features/authSlice";
 import { useAppDispatch } from "../app/hooks";
 import { UserType } from "../types";
 
@@ -62,11 +62,13 @@ export default function Signup() {
               required
             />
             {show === "password" ? (
-              <AiFillEye
-                size={18}
-                color={"var(--secondary-color)"}
-                onClick={handleShow}
-              />
+              <div id="eye">
+                <AiFillEye
+                  size={18}
+                  color={"var(--secondary-color)"}
+                  onClick={handleShow}
+                />
+              </div>
             ) : (
               <AiFillEyeInvisible
                 size={18}

@@ -30,7 +30,7 @@ export default function ModalDelete({ open, handleClose, post }: PropsModal) {
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
       >
-        <Box sx={style} className="modal modal__delete">
+        <Box sx={style} className="modal modal__delete" id="modal-delete">
           {/* <FaWindowClose
             fill={"var(--secondary-color)"}
             size={20}
@@ -56,6 +56,7 @@ export default function ModalDelete({ open, handleClose, post }: PropsModal) {
             <button
               className="posts__item-buttons-button posts__item-buttons-delete modal__buttons-button"
               onClick={() => dispatch(deletePost(post.id))}
+              id="delete"
             >
               Eliminar{"\u00A0"} <AiOutlineDelete size={18} color={"white"} />
             </button>
