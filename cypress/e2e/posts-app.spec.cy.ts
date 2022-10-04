@@ -76,7 +76,7 @@ describe("Posts App", () => {
         cy.get('[placeholder="Introduce tu nombre"]').type("eduardo");
         cy.get('[placeholder="Introduce tu contraseña"]').type("123456");
         cy.contains("Iniciar sesión").click();
-        cy.setLocalStorage("token", "true");
+        cy.getLocalStorage("token").should("contain", "true");
         cy.url().should("eq", `http://localhost:3000/prueba-app-posts#/`);
       });
     });
@@ -93,19 +93,26 @@ describe("Posts App", () => {
     it("a post can be updated", () => {
       cy.get("button:first").click();
       cy.get("#modal-update").should("be.visible");
+      cy.get("textarea").clear();
       cy.get("textarea").type("Editando");
       cy.contains("Guardar").click();
       cy.get("#modal-update").should("not.exist");
+      cy.contains("Editando");
       cy.get("#toast").contains("Post actualizado");
     });
     it("a post can be deleted", () => {
       cy.get("button:last").click();
       cy.get("#modal-delete").should("be.visible");
       cy.get("#delete").click();
+      cy.get("#modal-delete").should("not.exist");
+      cy.contains("Voluptatum itaque dolores nisi et quasi").should(
+        "not.exist"
+      );
       cy.get("#toast").contains("Post eliminado");
     });
     it("user can logout", () => {
       cy.get("#logout").click();
+      cy.getLocalStorage("token").should("not.exist");
       cy.url().should("include", "login");
     });
   });
