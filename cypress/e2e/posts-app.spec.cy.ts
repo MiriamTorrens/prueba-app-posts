@@ -5,7 +5,7 @@ describe("Posts App", () => {
 
   beforeEach(() => {
     cy.restoreLocalStorage();
-    cy.visit("http://localhost:3000/prueba-app-posts#/");
+    cy.visit("https://miriamtorrens.github.io/prueba-app-posts/#/");
   });
 
   afterEach(() => {
@@ -77,7 +77,10 @@ describe("Posts App", () => {
         cy.get('[placeholder="Introduce tu contraseña"]').type("123456");
         cy.contains("Iniciar sesión").click();
         cy.getLocalStorage("token").should("contain", "true");
-        cy.url().should("eq", `http://localhost:3000/prueba-app-posts#/`);
+        cy.url().should(
+          "eq",
+          `https://miriamtorrens.github.io/prueba-app-posts/#/`
+        );
       });
     });
   });
